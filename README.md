@@ -1,3 +1,6 @@
+Certainly! Below is an updated `README.md` that includes instructions for setting up Jest for testing, along with detailed steps for configuring and testing the CI/CD pipeline using GitHub Actions and Railway.
+
+```markdown
 # Weather App
 
 A Node.js application that provides weather information for a given city using the OpenWeatherMap API. This project includes a CI/CD pipeline configured with GitHub Actions for automated testing and deployment using Railway.
@@ -25,6 +28,8 @@ A Node.js application that provides weather information for a given city using t
 2. **NPM**: Comes with Node.js.
 3. **Railway CLI**: For deployment to Railway.
 4. **GitHub Account**: For hosting the repository and setting up GitHub Actions.
+5. **OpenWeatherMap API Key**: For fetching weather data.
+6. **Jest**: For running unit tests.
 
 ## Setup Instructions
 
@@ -33,8 +38,8 @@ A Node.js application that provides weather information for a given city using t
 Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/your-username/weather-app.git
-cd weather-app
+git clone https://github.com/your-username/weather_app.git
+cd weather_app
 ```
 
 ### 2. Install Dependencies
@@ -45,7 +50,23 @@ Install the required Node.js packages:
 npm install
 ```
 
-### 3. Configure Environment Variables
+### 3. Configure Jest
+
+Jest is used for testing. Make sure you have Jest installed as a dev dependency in your project:
+
+```bash
+npm install --save-dev jest supertest
+```
+
+Add a `test` script to your `package.json` if it's not already present:
+
+```json
+"scripts": {
+  "test": "jest"
+}
+```
+
+### 4. Configure Environment Variables
 
 Create a `.env` file in the root directory of the project and add your OpenWeatherMap API key:
 
@@ -53,14 +74,16 @@ Create a `.env` file in the root directory of the project and add your OpenWeath
 WEATHER_API_KEY=your_openweathermap_api_key
 ```
 
-### 4. Verify Environment Variables in Railway
+### 5. Set Up GitHub Secrets
 
-If deploying to Railway, make sure to set the `WEATHER_API_KEY` environment variable in Railway's environment settings:
+To secure your API key and Railway token, use GitHub Secrets:
 
-- Go to the Railway dashboard.
-- Select your project.
-- Navigate to **Settings** > **Variables**.
-- Add `WEATHER_API_KEY` with your OpenWeatherMap API key.
+- **Go to your GitHub repository**.
+- **Navigate to Settings** > **Secrets and variables** > **Actions**.
+- Click on **New repository secret**.
+- Add the following secrets:
+  - `WEATHER_API_KEY`: Your OpenWeatherMap API key.
+  - `RAILWAY_TOKEN`: Your Railway authentication token.
 
 ## Running the Application Locally
 
@@ -74,13 +97,13 @@ Open your browser and navigate to `http://localhost:3000` to see the welcome mes
 
 ## Running Tests
 
-Run the test suite using Jest:
+To run the test suite with Jest:
 
 ```bash
 npm test
 ```
 
-Jest will run the tests defined in the `tests` directory and output the results.
+Jest will execute the tests defined in the `tests` directory and display the results. Ensure you have proper test cases defined to validate your application's functionality.
 
 ## CI/CD Pipeline
 
@@ -96,7 +119,7 @@ The workflow includes steps for:
 
 ### Workflow File (`.github/workflows/ci.yml`)
 
-Here's an example `ci.yml` file:
+Here’s an example `ci.yml` file:
 
 ```yaml
 name: CI/CD Pipeline
@@ -170,6 +193,10 @@ Replace `your-service-name` with the name of your Railway service.
 
 - **Deployment Issues**: Check the Railway dashboard for logs and deployment status.
 - **Test Failures**: Review test logs in GitHub Actions to identify and fix issues.
-- **Environment Variables**: Ensure that all necessary environment variables are set correctly in both local and Railway environments.
+- **Environment Variables**: Ensure that GitHub Secrets are correctly configured and accessible in your GitHub Actions workflow.
+- **Local vs. CI Environment**: Ensure that your local environment and CI/CD environment are correctly configured with the necessary environment variables and dependencies.
 
-**Note:** Replace placeholders like `your_openweathermap_api_key`, `your-service-name`, and repository URL with actual values relevant to your setup.
+
+**Note:** Replace placeholders like `https://github.com/your-username/weather_app.git`, `your_openweathermap_api_key`, and `your-service-name` with actual values relevant to your setup.
+
+
