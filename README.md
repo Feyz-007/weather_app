@@ -58,7 +58,6 @@ Add a `test` script to your `package.json` if it's not already present:
 
 ```json
 "scripts": {
-  "start": "node index.js",
   "test": "jest"
 }
 ```
