@@ -1,6 +1,3 @@
-Certainly! Below is an updated `README.md` that includes instructions for setting up Jest for testing, along with detailed steps for configuring and testing the CI/CD pipeline using GitHub Actions and Railway.
-
-```markdown
 # Weather App
 
 A Node.js application that provides weather information for a given city using the OpenWeatherMap API. This project includes a CI/CD pipeline configured with GitHub Actions for automated testing and deployment using Railway.
@@ -15,7 +12,6 @@ A Node.js application that provides weather information for a given city using t
 - [CI/CD Pipeline](#cicd-pipeline)
 - [Deploying to Railway](#deploying-to-railway)
 - [Troubleshooting](#troubleshooting)
-- [License](#license)
 
 ## Features
 
@@ -84,6 +80,7 @@ To secure your API key and Railway token, use GitHub Secrets:
 - Add the following secrets:
   - `WEATHER_API_KEY`: Your OpenWeatherMap API key.
   - `RAILWAY_TOKEN`: Your Railway authentication token.
+  - `RAILWAY_PROJECT_ID`: Your Railway product ID.
 
 ## Running the Application Locally
 
